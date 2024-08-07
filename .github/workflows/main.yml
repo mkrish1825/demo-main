@@ -2,7 +2,7 @@ name: Trigger Workflows in Repo-A and Repo-B on package.json Change
 
 on:
   push:
-    paths:
+   # paths:
     #  - 'package.json'
     branches:
       - main
