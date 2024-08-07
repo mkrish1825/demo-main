@@ -2,6 +2,8 @@ name: Trigger Workflows in Repo-A and Repo-B on package.json Change
 
 on:
   push:
+    paths:
+      - 'package.json'
     branches:
       - main
 
@@ -20,7 +22,7 @@ jobs:
           const workflow_id = 'blank.yml';
           const ref = 'main';
 
-          await github.actions.createWorkflowDispatch({
+          await github.rest.actions.createWorkflowDispatch({
             owner,
             repo,
             workflow_id,
@@ -37,7 +39,7 @@ jobs:
           const workflow_id = 'sample.yml';
           const ref = 'main';
 
-          await github.actions.createWorkflowDispatch({
+          await github.rest.actions.createWorkflowDispatch({
             owner,
             repo,
             workflow_id,
