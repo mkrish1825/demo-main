@@ -2,10 +2,10 @@ name: Trigger Workflows in Repo-A and Repo-B on package.json Change
 
 on:
   push:
-    paths:
+    #paths:
     #  - 'package.json'
     branches:
-      - main
+      - qa
 
 jobs:
   trigger-repos:
@@ -20,7 +20,7 @@ jobs:
           const owner = 'mkrish1825';
           const repo = 'demo-1';
           const workflow_id = 'blank.yml';
-          const ref = 'main';
+          const ref = 'qa';
 
           await github.rest.actions.createWorkflowDispatch({
             owner,
@@ -37,7 +37,7 @@ jobs:
           const owner = 'mkrish1825';
           const repo = 'demo-2';
           const workflow_id = 'sample.yml';
-          const ref = 'main';
+          const ref = 'qa';
 
           await github.rest.actions.createWorkflowDispatch({
             owner,
