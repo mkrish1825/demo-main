@@ -1,0 +1,45 @@
+name: Trigger Workflows in Repo-A and Repo-B on package.json Change
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger-repos:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Trigger Workflow in Repo-A
+      uses: actions/github-script@v5
+      with:
+        github-token: ${{ secrets.GIT_TOKEN }}
+        script: |
+          const owner = 'mkrish1825';
+          const repo = 'demo-1';
+          const workflow_id = 'blank.yml';
+          const ref = 'main';
+
+          await github.actions.createWorkflowDispatch({
+            owner,
+            repo,
+            workflow_id,
+            ref
+          });
+
+    - name: Trigger Workflow in Repo-B
+      uses: actions/github-script@v5
+      with:
+        github-token: ${{ secrets.GIT_TOKEN }}
+        script: |
+          const owner = 'mkrish1825';
+          const repo = 'demo-2';
+          const workflow_id = 'sample.yml';
+          const ref = 'main';
+
+          await github.actions.createWorkflowDispatch({
+            owner,
+            repo,
+            workflow_id,
+            ref
+          });
